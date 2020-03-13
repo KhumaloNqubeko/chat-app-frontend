@@ -1,0 +1,10 @@
+<div class="login">
+	<h2>Chat @Khumzie</h2>
+    <form method="post">
+        <input type="text" name="u" placeholder="Got a nickname" [(ngModel)]="user" required="required" />
+        <div class="error" *ngIf="userExists">
+            User name taken!
+        </div>
+        <button type="submit" (click)="join()" class="btn btn-primary btn-block btn-large">Let me in.</button>
+    </form>
+</div>

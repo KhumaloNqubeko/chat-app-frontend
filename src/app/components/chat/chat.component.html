@@ -1,0 +1,76 @@
+<div class="container-fluid h-100">
+    <div class="row justify-content-center h-100">
+        <div class="col-md-8 col-xl-6 chat" *ngIf="!showTextArea">
+            <div class="card mb-sm-3 mb-md-0 contacts_card">
+                <div class="card-header">
+                    <div class="input-group">
+                        <input type="text" placeholder="Search..." name="" class="form-control search">
+                        <div class="input-group-prepend">
+                            <button mat-mini-fab color="primary" (click)="addPlace()">+</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body contacts_body">
+                    <ul class="contacts">
+                        <li class="active" *ngFor="let place of places">
+                            <div class="d-flex bd-highlight" (click)="selectPlace(place)">
+                                <div class="user_info">
+                                    <span>{{place}}</span>
+                                    <p>{{place}} is active</p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-footer"></div>
+            </div>
+        </div>
+        <div class="col-md-8 col-xl-6 chat" *ngIf="showTextArea">
+            <div class="card">
+                <div class="card-header msg_head">
+                    <div class="d-flex bd-highlight">
+                        <div class="img_cont">
+                            <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg"
+                                class="rounded-circle user_img">
+                            <span class="online_icon"></span>
+                        </div>
+                        <div class="user_info">
+                            <span>Chat with Khalid</span>
+                            <p>{{count}} Messages</p>
+                            <div *ngIf="newUser" style="color: white">
+                                <strong>{{newUserJoined}}</strong> joined.
+                            </div>
+                        </div>
+                    </div>
+                    <span id="action_menu_btn"> <button mat-button color="warn">Exit place</button></span>
+                </div>
+                <div class="action_menu">
+                    <!-- <button mat-button color="warn">Warn</button> -->
+                </div>
+                <div class="card-body msg_card_body">
+                    <div class="d-flex justify-content-start mb-4" *ngFor="let message of messageArray">
+                        <div class="img_cont_msg">
+                            <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg"
+                                class="rounded-circle user_img_msg">
+                        </div>
+                        <div class="msg_cotainer">
+                            {{message.message}}
+                            <span class="msg_time">9:00 AM, Today</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="input-group">
+                        <textarea [(ngModel)]="messageText" (keypress)="keypress($event)" class="form-control type_msg"
+                            placeholder="Type your message..."></textarea>
+                        <div class="input-group-append">
+                            <button mat-raised-button (click)="sendMessage()"
+                                style="border-bottom-right-radius: 25px; border-top-right-radius: 25px;"
+                                color="primary">Send</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
